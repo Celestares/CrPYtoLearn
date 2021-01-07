@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('learn_security') }}">Need for Information Security</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_security') }}">Need for security</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_system') }}">Trusted systems and reference monitor</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_model') }}">Security models</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_management') }}">Security management practices</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_attack') }}">Types of attacks</a>
+                    </div>
+                    <p class="text-muted"></p>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action active" href="{{ url_for('learn_quiz') }}">Quiz</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h2>Need for Information Security Quiz</h2>
+                <hr style="background-color:gray;">
+                {% if not answered %}
+                <div class="media-body">
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <p>Q1. Why is data not transmitted in clear text?</p>
+                            <input type="radio" id="q1a" name="q1" value="a">
+                            <label for="q1a">A. Transmission of data does not support clear text format</label><br>
+                            <input type="radio" id="q1b" name="q1" value="b">
+                            <label for="q1b">B. Data in clear text is insecure and can be compromised</label><br>
+                            <input type="radio" id="q1c" name="q1" value="c">
+                            <label for="q1c">C. Computers cannot read the data in clear text</label><br>
+                            <input type="radio" id="q1d" name="q1" value="d">
+                            <label for="q1d">D. It is faster to transmit data that is encrypted</label><br>
+                        </div>
+                        <div class="form-group">
+                            <p>Q2. Which of the following is/are a characteristic(s) of a reference monitor?</p>
+                            <input type="checkbox" id="q2a" name="q2" value="a">
+                            <label for="q2a">A. It should be efficient</label><br>
+                            <input type="checkbox" id="q2b" name="q2" value="b">
+                            <label for="q2b">B. It should always be invoked</label><br>
+                            <input type="checkbox" id="q2c" name="q2" value="c">
+                            <label for="q2c">C. It should be tamperproof</label><br>
+                            <input type="checkbox" id="q2d" name="q2" value="d">
+                            <label for="q2d">D. It should be small enough</label><br>
+                        </div>
+                        <div class="form-group">
+                            <p>Q3. Which of the following is NOT an approach to implement a security model?</p>
+                            <input type="radio" id="q3a" name="q3" value="a">
+                            <label for="q3a">A. Network security</label><br>
+                            <input type="radio" id="q3b" name="q3" value="b">
+                            <label for="q3b">B. No security</label><br>
+                            <input type="radio" id="q3c" name="q3" value="c">
+                            <label for="q3c">C. Application security</label><br>
+                            <input type="radio" id="q3d" name="q3" value="d">
+                            <label for="q3d">D. Security through obscurity</label><br>
+                        </div>
+                        <div class="form-group">
+                            <p>Q4. A key characteristic to create a good policy is to ensure that it is cost efficient
+                                and that it does not incur too much _________ to implement.
+                            </p>
+                            <input type="text" name="q4" class="form-control" placeholder="Type in answer here..." autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <p>Q5. Passive attacks involves modifications to the content of the original message because
+                                it involves capturing the message.
+                            </p>
+                            <input type="radio" id="q5a" name="q5" value="a">
+                            <label for="q5a">A. True</label><br>
+                            <input type="radio" id="q5b" name="q5" value="b">
+                            <label for="q5b">B. False</label><br>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+                <div class="media-body">
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <p>Q1. Why is data not transmitted in clear text?</p>
+                            <input type="radio" id="q1a" name="q1" value="a" disabled>
+                            <label for="q1a">A. Transmission of data does not support clear text format</label><br>
+                            <input type="radio" id="q1b" name="q1" value="b" disabled>
+                            <label for="q1b">B. Data in clear text is insecure and can be compromised</label><br>
+                            <input type="radio" id="q1c" name="q1" value="c" disabled>
+                            <label for="q1c">C. Computers cannot read the data in clear text</label><br>
+                            <input type="radio" id="q1d" name="q1" value="d" disabled>
+                            <label for="q1d">D. It is faster to transmit data that is encrypted</label><br>
+                            {% if result[0][0] == result[0][1] %}
+                            <p style="color:green;">You are correct!</p>
+                            <p>Your answer : {{result[0][0]}}</p>
+                            <p>Correct answer : {{result[0][1]}}</p>
+                            {% elif result[0][0] == "Unanswered" %}
+                            <p>Question unanswered. Correct answer will not be shown.</p>
+                            {% else %}
+                            <p style="color:red;">You are wrong!</p>
+                            <p>Your answer : {{result[0][0]}}</p>
+                            <p>Correct answer : {{result[0][1]}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <p>Q2. Which of the following is/are a characteristic(s) of a reference monitor?</p>
+                            <input type="checkbox" id="q2a" name="q2" value="a" disabled>
+                            <label for="q2a">A. It should be efficient</label><br>
+                            <input type="checkbox" id="q2b" name="q2" value="b" disabled>
+                            <label for="q2b">B. It should always be invoked</label><br>
+                            <input type="checkbox" id="q2c" name="q2" value="c" disabled>
+                            <label for="q2c">C. It should be tamperproof</label><br>
+                            <input type="checkbox" id="q2d" name="q2" value="d" disabled>
+                            <label for="q2d">D. It should be small enough</label><br>
+                            {% if result[1][0] == result[1][1] %}
+                            <p style="color:green;">You are correct!</p>
+                            <p>Your answer : {{result[1][0]}}</p>
+                            <p>Correct answer : {{result[1][1]}}</p>
+                            {% elif result[1][0] == "Unanswered" %}
+                            <p>Question unanswered. Correct answer will not be shown.</p>
+                            {% else %}
+                            <p style="color:red;">You are wrong!</p>
+                            <p>Your answer : {{result[1][0]}}</p>
+                            <p>Correct answer : {{result[1][1]}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <p>Q3. Which of the following is NOT an approach to implement a security model?</p>
+                            <input type="radio" id="q3a" name="q3" value="a" disabled>
+                            <label for="q3a">A. Network security</label><br>
+                            <input type="radio" id="q3b" name="q3" value="b" disabled>
+                            <label for="q3b">B. No security</label><br>
+                            <input type="radio" id="q3c" name="q3" value="c" disabled>
+                            <label for="q3c">C. Application security</label><br>
+                            <input type="radio" id="q3d" name="q3" value="d" disabled>
+                            <label for="q3d">D. Security through obscurity</label><br>
+                            {% if result[2][0] == result[2][1] %}
+                            <p style="color:green;">You are correct!</p>
+                            <p>Your answer : {{result[2][0]}}</p>
+                            <p>Correct answer : {{result[2][1]}}</p>
+                            {% elif result[2][0] == "Unanswered" %}
+                            <p>Question unanswered. Correct answer will not be shown.</p>
+                            {% else %}
+                            <p style="color:red;">You are wrong!</p>
+                            <p>Your answer : {{result[2][0]}}</p>
+                            <p>Correct answer : {{result[2][1]}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <p>Q4. A key characteristic to create a good policy is to ensure that it is cost efficient
+                                and that it does not incur too much _________ to implement.
+                            </p>
+                            {% if result[3][0] == result[3][1] %}
+                            <p style="color:green;">You are correct!</p>
+                            <p>Your answer : {{result[3][0]}}</p>
+                            <p>Correct answer : {{result[3][1]}}</p>
+                            {% elif result[3][0] == "Unanswered" %}
+                            <p>Question unanswered. Correct answer will not be shown.</p>
+                            {% else %}
+                            <p style="color:red;">You are wrong!</p>
+                            <p>Your answer : {{result[3][0]}}</p>
+                            <p>Correct answer : {{result[3][1]}}</p>
+                            {% endif %}
+
+                        </div>
+                        <div class="form-group">
+                            <p>Q5. Passive attacks involves modifications to the content of the original message because
+                                it involves capturing the message.
+                            </p>
+                            <input type="radio" id="q5a" name="q5" value="a" disabled>
+                            <label for="q5a">A. True</label><br>
+                            <input type="radio" id="q5b" name="q5" value="b" disabled>
+                            <label for="q5b">B. False</label><br>
+                            {% if result[4][0] == result[4][1] %}
+                            <p style="color:green;">You are correct!</p>
+                            <p>Your answer : {{result[4][0]}}</p>
+                            <p>Correct answer : {{result[4][1]}}</p>
+                            {% elif result[4][0] == "Unanswered" %}
+                            <p>Question unanswered. Correct answer will not be shown.</p>
+                            {% else %}
+                            <p style="color:red;">You are wrong!</p>
+                            <p>Your answer : {{result[4][0]}}</p>
+                            <p>Correct answer : {{result[4][1]}}</p>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

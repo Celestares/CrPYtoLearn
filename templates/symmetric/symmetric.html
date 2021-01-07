@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('symmetric') }}">Symmetric Algorithms</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('symmetric_aes') }}">AES</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h2>Symmetric Algorithms</h2>
+                <hr style="background-color:gray;">
+                <h5>Electronic Code Book (ECB)</h5>
+                <div style="text-align:center;">
+                    <img src="../static/example_ecb.png" alt="Example of ECB" style="background-color:white;"><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <hr style="background-color:gray;">
+
+                <h5>Cipher Block Chaining (CBC)</h5>
+                <div style="text-align:center;">
+                    <img src="../static/example_cbc.png" alt="Example of CBC" style="background-color:white;"><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <hr style="background-color:gray;">
+
+                <h5>Cipher Feedback (CFB)</h5>
+                <div style="text-align:center;">
+                    <img src="../static/example_cfb.png" alt="Example of CFB" style="background-color:white;"><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <hr style="background-color:gray;">
+
+                <h5>Output Feedback (OFB)</h5>
+                <div style="text-align:center;">
+                    <img src="../static/example_ofb.png" alt="Example of OFB" style="background-color:white;"><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+            </div>
+        </div>
+    </main>
+{% endblock %}

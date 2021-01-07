@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('symmetric') }}">Symmetric Algorithms</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action active" href="{{ url_for('symmetric_aes') }}">AES</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <div class="media-body">
+                    <h3>AES</h3>
+                    <div class="media-body">
+                        <form method="POST" action="">
+                            <div class="form-group">
+                                <p>Method:</p>
+                                <input type="radio" id="mode1" name="method" value="encrypt" checked onchange="select_change()">
+                                <label for="mode1">Encrypt</label><br>
+                                <input type="radio" id="mode2" name="method" value="decrypt" onchange="select_change()">
+                                <label for="mode2">Decrypt</label><br>
+<!--                                <select name="method" class="form-control" onchange="select_change()" id="method" required style="background-color: #dce8fc;">-->
+<!--                                    <option value="encrypt">Encrypt</option>-->
+<!--                                    <option value="decrypt">Decrypt</option>-->
+<!--                                </select>-->
+                            </div>
+                            <div class="form-group">
+                                <p>Mode:</p>
+                                <select name="mode" class="form-control" onchange="select_change()" id="mode" required style="background-color: #dce8fc;">
+                                    <option value="ECB">ECB</option>
+                                    <option value="CBC">CBC</option>
+                                    <option value="CFB">CFB</option>
+                                    <option value="OFB">OFB</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="key_form">
+                                <p>Key:</p>
+                                <select name="key" class="form-control" required style="background-color: #dce8fc;">
+                                    <option value="128">128 bits</option>
+                                    <option value="192">192 bits</option>
+                                    <option value="256">256 bits</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="iv_form" style="display:none;">
+                                <p>Initialisation Vector (IV):</p>
+                                <input class="form-control" type="text" name="iv" id="iv_input" style="background-color: #dce8fc;" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <p>Cipher/Plain Text:</p>
+                                <textarea class="form-control" name="text" placeholder="Insert text to encrypt/decrypt..." required style="background-color: #dce8fc;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Submit" class="btn btn-primary"/>
+                            </div>
+                        </form>
+                        {% if key %}
+                        <div class="form-group">
+                            <p>Generated Key Used:</p>
+                            <input class="form-control" type="text" value="{{ key }}" style="background-color: #dce8fc;">
+                        </div>
+                        {% endif %}
+                        {% if iv %}
+                        <div class="form-group">
+                            <p>IV (To be used for decryption):</p>
+                            <input class="form-control" type="text" value="{{ iv }}" style="background-color: #dce8fc;">
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <p>Output:</p>
+                            <textarea class="form-control" placeholder="Output text will appear here." style="background-color: #dce8fc;">{{ output }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function select_change() {
+            if (document.getElementById("mode1").checked == true) {
+                method = "encrypt"
+            } else {
+                method = "decrypt"
+            }
+
+            if (method == "decrypt") {
+                document.getElementById("key_form").innerHTML = "<p>Key:</p><input class='form-control' type='text' name='key' required style='background-color: #dce8fc;' autocomplete='off'/>";
+                if (document.getElementById("mode").value !== "ECB") {
+                    document.getElementById("iv_form").style.display = "block";
+                    document.getElementById("iv_input").required = true;
+                } else {
+                    document.getElementById("iv_form").style.display = "none";
+                    document.getElementById("iv_input").required = false;
+                }
+            } else {
+                document.getElementById("key_form").innerHTML = "<p>Key:</p><select name='key' class='form-control' required style='background-color: #dce8fc;'><option value='128'>128 bits</option><option value='192'>192 bits</option><option value='256'>256 bits</option></select>";
+                document.getElementById("iv_form").style.display = "none";
+                document.getElementById("iv_input").required = false;
+            }
+        }
+    </script>
+{% endblock %}
+

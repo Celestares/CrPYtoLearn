@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('learn_security') }}">Need for Information Security</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_security') }}">Need for security</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_system') }}">Trusted systems and reference monitor</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_model') }}">Security models</a>
+                        <a class="list-group-item list-group-item-action active" href="{{ url_for('learn_management') }}">Security management practices</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_attack') }}">Types of attacks</a>
+                    </div>
+                    <p class="text-muted"></p>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_quiz') }}">Quiz</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h2>Security Management Practices</h2>
+                <hr style="background-color:gray;">
+                <h5>What is security management?</h5>
+                <p>It entails the <strong>identification of an organization's information assessment</strong>
+                    and the development, documentation, and <strong>implementation of policies</strong>, standards,
+                    procedures, and guidelines that <strong>ensure confidentiality, integrity, and availability</strong>.
+                </p>
+                <hr style="background-color:gray;">
+                <h5>What are the 4 key characteristics to create a good policy?</h5>
+                <ol>
+                    <li><u>Affordability</u>: <b>Cost efficient</b> and <b>does not incur too much effort</b> to implement</li>
+                    <li><u>Functionality</u>: Available <b>security mechanism</b> to <b>support</b> the policy</li>
+                    <li><u>Cultural issues</u>: Gels with people's expectations, working style and beliefs</li>
+                    <ul><li>E.g. Use of email, social medias at work</li><li style="visibility:hidden; font-size:1px;"></li></ul>
+                    <li><u>Legality</u>: Meets the legal requirements</li>
+                    <ul><li>E.g. Usage of 2FA (Two-Factor Authentication) in Internet banking</li></ul>
+                </ol>
+                <hr style="background-color:gray;">
+                <h5>How do we succesfully implement a security policy?</h5>
+                <ul>
+                    <li>Explain the security to all concerned</li>
+                    <ul><li>Relevant stakeholders understand the <b>need for the policy</b></li><li style="visibility:hidden; font-size:1px;"></li></ul>
+                    <li>Outline everybody's responsibilities</li>
+                    <ul><li>To let them know <b>what</b> and <b>how</b> they are protecting the information</li><li style="visibility:hidden; font-size:1px;"></li></ul>
+                    <li>Usage of simple language (Make it clear and <b>easy to understand</b>)</li>
+                    <li>Establish accountability</li>
+                    <li>Provide for exceptions and periodic view</li>
+                    <ul><li>Enable the policy to be continuously updated and improved</li></ul>
+                </ul>
+            </div>
+        </div>
+    </main>
+{% endblock %}

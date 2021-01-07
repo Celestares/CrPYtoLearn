@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('learn_security') }}">Need for Information Security</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_security') }}">Need for security</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_system') }}">Trusted systems and reference monitor</a>
+                        <a class="list-group-item list-group-item-action active" href="{{ url_for('learn_model') }}">Security models</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_management') }}">Security management practices</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_attack') }}">Types of attacks</a>
+                    </div>
+                    <p class="text-muted"></p>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_quiz') }}">Quiz</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h2>Security Models</h2>
+                <hr style="background-color:gray;">
+                <h5>What is a security model?</h5>
+                <ul>
+                    <li>Scheme that specifies and enforces security policies (E.g. Reference monitors)</li>
+                    <li>Provides rules of the road for security in operating systems</li>
+                </ul>
+                <hr style="background-color:gray;">
+                <h5>The 4 approaches to implement a security model:</h5>
+                <ol>
+                    <li>No security (Security "as is", default)</li>
+                    <ul>
+                        <li>Use <strong>default security configuration</strong></li>
+                        <li>Does not have addtional security protection</li>
+                        <li style="visibility:hidden; font-size:1px;"></li>
+                    </ul>
+                    <li>Security through obscurity (Hiding confidential information)</li>
+                    <li>Host security</li>
+                    <ul>
+                        <li>Provide security by <strong>protecting the host</strong></li>
+                        <li>E.g. Provide user authentication and access control</li>
+                        <li style="visibility:hidden; font-size:1px;"></li>
+                    </ul>
+                    <li>Network security (E.g. Encrypting communication channel)</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+{% endblock %}

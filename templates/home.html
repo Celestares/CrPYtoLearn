@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-12 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h1>Content Page</h1>
+                <hr style="background-color:gray;">
+                <h2>Learn</h2>
+                <p>You will learn the following things : </p>
+                <ul>
+                    <li>Need for security</li>
+                    <li>Trusted Systems and reference monitor</li>
+                    <li>Security models</li>
+                    <li>Security management practices</li>
+                    <li>Types of attacks</li>
+                </ul>
+                <small><i>Note: There is also a quiz to test your knowledge after learning</i></small>
+                <hr style="background-color:gray;">
+
+                <h2>Cryptography Techniques</h2>
+                <p>You get to use the following techniques and how they work : </p>
+                <ul>
+                    <li>Shift cipher</li>
+                    <li>Mono-alphabet cipher</li>
+                    <li>Rail fence technique</li>
+                    <li>Simple columnar transposition technique</li>
+                    <li>Vernam cipher</li>
+                    <li>Diffie-Hellman key exchange</li>
+                </ul>
+                <hr style="background-color:gray;">
+
+                <h2>Symmetric Algorithms</h2>
+                <p>You get to use the following AES cipher modes and how they work : </p>
+                <ul>
+                    <li>Electronic Code Book (ECB)</li>
+                    <li>Cipher Block Chaining (CBC)</li>
+                    <li>Cipher Feedback (CFB)</li>
+                    <li>Output Feedback (OFB)</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+{% endblock %}

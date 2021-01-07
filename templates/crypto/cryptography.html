@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('cryptography') }}">Cryptography Concepts and Techniques</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_shiftcipher') }}">Shift cipher</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_monoalphacipher') }}">Mono-alphabet cipher</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_railfencetech') }}">Rail Fence Technique</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_coltranstech') }}">Simple columnar transposition technique</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_vernamcipher') }}">Vernam cipher</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_dhkeyexchange') }}">Diffie-Hellman key exchange</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h2>Cryptography Concepts and Techniques</h2>
+                <hr style="background-color:gray;">
+                <h5>Shift Cipher</h5>
+                It shifts each character in the plaintext by x amount (specified by user as the key) to the right
+                <div style="text-align:center;">
+                    <img src="../static/example_shift.jpg" alt="Example of shift cipher"><br>
+                    <small>Credit to Wikipedia</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>Example : If the key is 3, all character with 'a' will shift (become)
+                    to 'd' as ciphertext, 'b' become 'e', 'c' become 'f' and so on.</p>
+                <hr style="background-color:gray;">
+
+                <h5>Mono-alphabet Cipher</h5>
+                <p>Similar to shift cipher, but uses random substitution, meaning each "A" is replaced
+                    by any character from "B" to "Z", each "B" is replaced by any character with "A" or "C" to "Z" and so on.</p>
+                <div style="text-align:center;">
+                    <img src="../static/example_mono.png" alt="Example of mono-alphabet cipher"><br>
+                    <small>Credit to Mohd Arif slides from slideshare.net</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>Example : All "A" will be replaced by "D", all "B" will be replaced by "K" and so on.</p>
+                <hr style="background-color:gray;">
+
+                <h5>Rail Fence Technique</h5>
+                <p>Writes the plaintext is diagonals to form rows (row specified by user) and is read row by row</p>
+                <div style="text-align:center;">
+                    <img src="../static/example_railfence.png" alt="Example of railfence technique" style="width: 500px;"><br>
+                    <small>Credit to ResearchGate</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>Example : In the above picture, 3 rows were created. Since it is read row by row, 1st row is read as
+                    "Hor", 2nd row is read as "el ol", and last row is read as "lWd". Combining the rows together would
+                    result in "Horel ollWd</p>
+                <hr style="background-color:gray;">
+
+                <h5>Simple Columnar Transposition Technique</h5>
+                <p>Similar to rail fence technique but plaintext is written in rows is read column by column</p>
+                <p>Note : Does not have to be read by column 1 then column 2 then column 3 and so on.. a key can specify which
+                    column to read first</p>
+                <p>Let the key be "car", it will read the column based in alphabet order, meaning since "a" of the key "car" is the
+                1st letter of the alphabet, the 2nd column will be read first, followed by 1st column since "c" is the 3rd letter
+                and then the last column since "r" is the 18th alphabet.</p>
+                <div style="text-align:center;">
+                    <img src="../static/example_column.jpg" alt="Example of simple columnar transposition technique"><br>
+                    <small>Credit to Crypto Corner</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>Example : Input plaintext is "THETOMATOISAPLANTINTHENIGHTSHADEFAMILY" and the key is "TOMATO",
+                    since "A" is the 1st letter of the alphabet and appear in the 4th letter of the key, the 4th column is read first.
+                </p>
+                <hr style="background-color:gray;">
+
+                <h5>Vernam Cipher</h5>
+                <p>It treats each plaintext character and key character as a number and the numbers are added up
+                    and converted back to text (ciphertext)</p>
+                <p>A = 0, B = 1, C =2 and so on.</p>
+                <div style="text-align:center;">
+                    <img src="../static/example_vernam.png" alt="Example of vernam cipher"><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>Example : Input plaintext is "HELLO" and key is "WORLD", both are converted to numbers and added up
+                    if the number is greater than 26, it will be subtracted by 26. The output number will then be converted
+                    back to text.</p>
+                <hr style="background-color:gray;">
+
+                <h5>Diffie-Hellman Key Exchange</h5>
+                <p>A secret key can be agreed upon without any secrets being exchanged</p>
+                <div style="text-align:center;">
+                    <img src="../static/example_dhkey.png" alt="Example of Diffie-Hellman key exchange"><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>Example : Two people will agree on 2 large prime number (can be known) and both of them are to decide on
+                    any secret number for each of themselves and calculate g^x mod n where x is the secret number they decided on.
+                    They exchange their calculated value and apply the same calculation except g is replaced by the calculated value
+                    they have gotten from their partner. This results in them receving the same result without needing to pass their
+                    secret number to each other.
+                </p>
+            </div>
+        </div>
+    </main>
+{% endblock %}

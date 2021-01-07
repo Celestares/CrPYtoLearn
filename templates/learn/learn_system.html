@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('learn_security') }}">Need for Information Security</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_security') }}">Need for security</a>
+                        <a class="list-group-item list-group-item-action active" href="{{ url_for('learn_system') }}">Trusted systems and reference monitor</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_model') }}">Security models</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_management') }}">Security management practices</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_attack') }}">Types of attacks</a>
+                    </div>
+                    <p class="text-muted"></p>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_quiz') }}">Quiz</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h2>Trusted Systems and Reference Monitor</h2>
+                <hr style="background-color:gray;">
+                <h5>What is a trusted system?</h5>
+                <ul>
+                    <li>A computer system that can be trusted to a specified extent</li>
+                    <li>Enforces a specified security policy</li>
+                    <li>Implemented using a reference monitor</li>
+                </ul>
+                <hr style="background-color:gray;">
+                <h5>What is a reference monitor?</h5>
+                <ul>
+                    <li>An entity at the heart of the computer system</li>
+                    <li>Responsible for all decisions related to access controls</li>
+                </ul>
+                <div style="text-align:center;">
+                    <img src="../static/example_monitor.png" alt="Example of a reference monitor."/><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>In the above picture, if the subject <strong>request for an action on an object</strong> (e.g. reading a file),
+                    The reference monitor will check the request to <strong>determine if the subject has the
+                    privilege</strong> to do so. If he/she has, access is granted. If not, access is denied.
+                </p>
+                <h5>3 characteristics a reference monitor have:</h5>
+                <ol>
+                    <li>Should be tamperproof</li>
+                    <li>Should always be invoked (Enable enforcement of all requests)</li>
+                    <li>Should be small enough (Enable itself to be independently tested)</li>
+                </ol>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}

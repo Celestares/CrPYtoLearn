@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('cryptography') }}">Cryptography Concepts and Techniques</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_shiftcipher') }}">Shift cipher</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_monoalphacipher') }}">Mono-alphabet cipher</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_railfencetech') }}">Rail Fence Technique</a>
+                        <a class="list-group-item list-group-item-action active" href="{{ url_for('cryptography_coltranstech') }}">Simple columnar transposition technique</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_vernamcipher') }}">Vernam cipher</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('cryptography_dhkeyexchange') }}">Diffie-Hellman key exchange</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h3>Simple columnar transposition technique</h3>
+                <div class="media-body">
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <p>Mode:</p>
+                            <input type="radio" id="mode1" name="mode" value="encrypt" checked>
+                            <label for="mode1">Encrypt</label><br>
+                            <input type="radio" id="mode2" name="mode" value="decrypt">
+                            <label for="mode2">Decrypt</label><br>
+                        </div>
+                        <div class="form-group">
+                            <p>No. of columns:</p>
+                            <input class="form-control" type="number" name="columns" min="2" value="3" step="1" required style="background-color: #dce8fc;">
+                        </div>
+                        <div class="form-group">
+                            <p>Key (Optional, No. of characters in key must be same as No. of columns):</p>
+                            <input class="form-control" type="text" name="key" style="background-color: #dce8fc;" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <p>Cipher/Plain Text:</p>
+                            <textarea class="form-control" name="text" placeholder="Insert text to encrypt/decrypt..." required style="background-color: #dce8fc;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <p>Output:</p>
+                       <textarea class="form-control" placeholder="Output text will appear here." style="background-color: #dce8fc;">{{ output }}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

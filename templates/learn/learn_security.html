@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3><a class="list-group-item list-group-item-action content-section-title" href="{{ url_for('learn_security') }}">Need for Information Security</a></h3>
+                    <p class='text-muted'>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action active" href="{{ url_for('learn_security') }}">Need for security</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_system') }}">Trusted systems and reference monitor</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_model') }}">Security models</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_management') }}">Security management practices</a>
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_attack') }}">Types of attacks</a>
+                    </div>
+                    <p class="text-muted"></p>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" href="{{ url_for('learn_quiz') }}">Quiz</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 main-content" style="background-color:#19192b;color:#D3D3D3;">
+                <h2>Need for Security</h2>
+                <hr style="background-color:gray;">
+                <h5>Why do we need security?</h5>
+                <p>In today’s world, we use the Internet for many purposes:</p>
+                <ul>
+                    <li>Email our friends or colleagues</li>
+                    <li>WhatsApp our families and clients</li>
+                    <li>Do online shopping and purchasing</li>
+                    <li>Make banking transactions</li>
+                </ul>
+                <h5>What happens if:</h5>
+                <ul>
+                    <li>Anyone can see what you email and who you email to?</li>
+                    <li>See the messages you sent?</li>
+                    <li>Know what you purchased and the credit card details?</li>
+                    <li>Know your bank account details?</li>
+                </ul>
+                <p>That is why there is a need for security.</p>
+                <hr style="background-color:gray;">
+                <p>Data are transmitted in clear text, which means that sensitive information
+                    are <strong>not secure</strong> and <strong>can be compromised</strong></p>
+                <div style="text-align:center;">
+                    <img src="../static/example_security.png" alt="Example of confidential data sent over the Internet."/><br>
+                    <small>Taken from Applied Cryptography lecture notes</small>
+                </div>
+                <hr style="visibility:hidden;">
+                <p>If the credit card details are sent in the clear text from the client to the server,
+                    an attacker is able to <strong>sniff the communication channel</strong>,
+                    and <strong>read the credit card details</strong>.</p>
+                <hr style="background-color:gray;">
+                <p>In conclusion, with security, sensitive information can be <strong>secured using encryption</strong>.
+                This stops attackers from being able to read the data that is sent over, thus protecting
+                sensitive information to be seen by unauthorised people.</p>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}
